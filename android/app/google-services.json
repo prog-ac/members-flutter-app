@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "58384803904",
+    "firebase_url": "https://prog-ac-members.firebaseio.com",
+    "project_id": "prog-ac-members",
+    "storage_bucket": "prog-ac-members.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:58384803904:android:cb21a4aae611985dcb17a5",
+        "android_client_info": {
+          "package_name": "net.shohi.member_site"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "58384803904-d940cd1mlkd7e9cv3kuuo634a38isu6i.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbIJ_jeEfDPlijvDCRsfCaoplE9RMC41M"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "58384803904-d940cd1mlkd7e9cv3kuuo634a38isu6i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
