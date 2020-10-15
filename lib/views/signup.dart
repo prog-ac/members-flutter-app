@@ -98,6 +98,7 @@ class _SignUpState extends State<SignUp> {
                   if (value.length < 3) {
                     return "名前は3文字以上で入力してください";
                   }
+                  return null;
                 },
               ),
               //メールアドレス
