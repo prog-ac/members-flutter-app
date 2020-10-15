@@ -2,7 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:member_site/main.dart';
-import './signin.dart';
+import 'package:member_site/views/signin.dart';
 
 class SignUp extends StatefulWidget {
   SignUp({Key key}) : super(key: key);
@@ -14,16 +14,14 @@ class SignUp extends StatefulWidget {
 class _SignUpState extends State<SignUp> {
   final GlobalKey<FormState> _signupKey = GlobalKey<FormState>();
 
-  TextEditingController nameInputController;
   TextEditingController emailInputController;
   TextEditingController pwdInputController;
 
   @override
   initState() {
     super.initState();
-    nameInputController = new TextEditingController();
-    emailInputController = new TextEditingController();
-    pwdInputController = new TextEditingController();
+    emailInputController = TextEditingController();
+    pwdInputController = TextEditingController();
     Firebase.initializeApp().whenComplete(() {
       print("completed");
       setState(() {});
@@ -34,7 +32,7 @@ class _SignUpState extends State<SignUp> {
   String emailValidator(String value) {
     Pattern pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-    RegExp regex = new RegExp(pattern);
+    RegExp regex = RegExp(pattern);
     if (!regex.hasMatch(value)) {
       return '正しいEmailのフォーマットで入力してください';
     } else {
@@ -63,7 +61,6 @@ class _SignUpState extends State<SignUp> {
                     context,
                     MaterialPageRoute(builder: (context) => MyHomePage()),
                     (_) => false),
-                nameInputController.clear(),
                 emailInputController.clear(),
                 pwdInputController.clear(),
               })
@@ -90,18 +87,6 @@ class _SignUpState extends State<SignUp> {
           key: _signupKey,
           child: Column(
             children: <Widget>[
-              //名前
-              TextFormField(
-                decoration:
-                    InputDecoration(labelText: '名前*', hintText: "Lebron"),
-                controller: nameInputController,
-                validator: (value) {
-                  if (value.length < 3) {
-                    return "名前は3文字以上で入力してください";
-                  }
-                  return null;
-                },
-              ),
               //メールアドレス
               TextFormField(
                 decoration: InputDecoration(

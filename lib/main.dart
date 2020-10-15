@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:member_site/views/signin.dart';
-import './views/signin.dart';
 
 void main() {
   runApp(MyApp());

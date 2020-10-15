@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
-import './signup.dart';
+import 'package:member_site/views/signup.dart';
 import 'package:member_site/main.dart';
 
 class SignIn extends StatefulWidget {
@@ -18,8 +18,8 @@ class _SignInState extends State<SignIn> {
   @override
   initState() {
     super.initState();
-    emailInputController = new TextEditingController();
-    pwdInputController = new TextEditingController();
+    emailInputController = TextEditingController();
+    pwdInputController = TextEditingController();
     Firebase.initializeApp().whenComplete(() {
       print("completed");
       setState(() {});
@@ -30,7 +30,7 @@ class _SignInState extends State<SignIn> {
   String emailValidator(String value) {
     Pattern pattern =
         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
-    RegExp regex = new RegExp(pattern);
+    RegExp regex = RegExp(pattern);
     if (!regex.hasMatch(value)) {
       return '正しいEmailのフォーマットで入力してください';
     } else {
@@ -48,7 +48,7 @@ class _SignInState extends State<SignIn> {
   }
 
   //ログイン
-  void loginUser() {
+  void signIn() {
     if (_signinKey.currentState.validate()) {
       FirebaseAuth.instance
           .signInWithEmailAndPassword(
@@ -112,7 +112,7 @@ class _SignInState extends State<SignIn> {
                 color: Theme.of(context).primaryColor,
                 textColor: Colors.white,
                 onPressed: () {
-                  loginUser();
+                  signIn();
                 },
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
