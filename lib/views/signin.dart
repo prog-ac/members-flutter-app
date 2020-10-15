@@ -1,27 +1,23 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import './signup.dart';
 import 'package:member_site/main.dart';
-import './signin.dart';
 
-class SignUp extends StatefulWidget {
-  SignUp({Key key}) : super(key: key);
-
+class SignIn extends StatefulWidget {
   @override
-  _SignUpState createState() => _SignUpState();
+  _SignInState createState() => _SignInState();
 }
 
-class _SignUpState extends State<SignUp> {
-  final GlobalKey<FormState> _signupKey = GlobalKey<FormState>();
+class _SignInState extends State<SignIn> {
+  final GlobalKey<FormState> _signinKey = GlobalKey<FormState>();
 
-  TextEditingController nameInputController;
   TextEditingController emailInputController;
   TextEditingController pwdInputController;
 
   @override
   initState() {
     super.initState();
-    nameInputController = new TextEditingController();
     emailInputController = new TextEditingController();
     pwdInputController = new TextEditingController();
     Firebase.initializeApp().whenComplete(() {
@@ -51,19 +47,19 @@ class _SignUpState extends State<SignUp> {
     }
   }
 
-  // アカウント登録
-  void registeUser() {
-    if (_signupKey.currentState.validate()) {
+  //ログイン
+  void loginUser() {
+    if (_signinKey.currentState.validate()) {
       FirebaseAuth.instance
-          .createUserWithEmailAndPassword(
+          .signInWithEmailAndPassword(
               email: emailInputController.text,
               password: pwdInputController.text)
           .then((result) => {
+                print("User id is ${result.user.uid}"),
                 Navigator.pushAndRemoveUntil(
                     context,
                     MaterialPageRoute(builder: (context) => MyHomePage()),
                     (_) => false),
-                nameInputController.clear(),
                 emailInputController.clear(),
                 pwdInputController.clear(),
               })
@@ -76,44 +72,30 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("アカウント作成"),
+        title: Text("ログイン"),
       ),
-      body: signupscreen(),
+      body: signinscreen(),
     );
   }
 
-  Widget signupscreen() {
+  Widget signinscreen() {
     return Container(
         padding: const EdgeInsets.all(20.0),
         child: SingleChildScrollView(
             child: Form(
-          key: _signupKey,
+          key: _signinKey,
           child: Column(
             children: <Widget>[
-              //名前
-              TextFormField(
-                decoration:
-                    InputDecoration(labelText: '名前*', hintText: "Lebron"),
-                controller: nameInputController,
-                validator: (value) {
-                  if (value.length < 3) {
-                    return "名前は3文字以上で入力してください";
-                  }
-                  return null;
-                },
-              ),
               //メールアドレス
               TextFormField(
-                decoration: InputDecoration(
-                    labelText: 'メールアドレス*', hintText: "sample@gmail.com"),
+                decoration: InputDecoration(labelText: 'メールアドレス'),
                 controller: emailInputController,
                 keyboardType: TextInputType.emailAddress,
                 validator: emailValidator,
               ),
               //パスワード
               TextFormField(
-                decoration:
-                    InputDecoration(labelText: 'パスワード*', hintText: "********"),
+                decoration: InputDecoration(labelText: 'パスワード'),
                 controller: pwdInputController,
                 obscureText: true,
                 validator: pwdValidator,
@@ -122,7 +104,7 @@ class _SignUpState extends State<SignUp> {
               //アカウント作成ボタン
               RaisedButton(
                 child: Text(
-                  "アカウント作成",
+                  "ログイン",
                   style: TextStyle(
                     fontSize: 20.0,
                   ),
@@ -130,7 +112,7 @@ class _SignUpState extends State<SignUp> {
                 color: Theme.of(context).primaryColor,
                 textColor: Colors.white,
                 onPressed: () {
-                  registeUser();
+                  loginUser();
                 },
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
@@ -138,13 +120,13 @@ class _SignUpState extends State<SignUp> {
               ),
               FlatButton(
                 child: Text(
-                  "ログイン",
+                  "アカウント作成",
                   style: TextStyle(fontSize: 20.0, color: Colors.blue),
                 ),
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
                       context,
-                      MaterialPageRoute(builder: (context) => SignIn()),
+                      MaterialPageRoute(builder: (context) => SignUp()),
                       (_) => false);
                 },
               )
