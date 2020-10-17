@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:member_site/views/signup.dart';
+import 'package:member_site/views/signin.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: SignUp()
+      home: SignIn()
     );
   }
 }
