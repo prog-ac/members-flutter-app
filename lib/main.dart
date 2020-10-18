@@ -1,7 +1,11 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:member_site/views/home/home.dart';
 import 'package:member_site/views/signup.dart';
 
-void main() {
+void main()async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(MyApp());
 }
 
@@ -9,26 +13,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Membar Site',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
-      home: SignUp()
-    );
+        debugShowCheckedModeBanner: false,
+        title: 'Membar Site',
+        theme: ThemeData(
+          primarySwatch: Colors.blue,
+          visualDensity: VisualDensity.adaptivePlatformDensity,
+        ),
+        home: HomePage());
   }
-}
-
-class MyHomePage extends StatelessWidget {
- @override
- Widget build(BuildContext context) {
-   return MaterialApp(
-     debugShowCheckedModeBanner: false,
-     home: Scaffold(
-       appBar: AppBar(title: Text("ホーム"),),  // appBar プロパティに AppBar Widget を追加
-       body: Center(child: Text("オラオラオラオラ")),
-     ),
-   );
- }
 }
