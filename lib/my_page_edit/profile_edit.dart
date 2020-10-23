@@ -59,7 +59,7 @@ class _MyPage extends State {
                       onChanged: (name_kana) {
                         this.name_kana = name_kana;
                       },
-                      onSaved: (nameKana) => this.name_kana = name_kana,
+                      onSaved: (name_kana) => this.name_kana = name_kana,
                       decoration: InputDecoration(
                         labelText: 'かな',
                         border: OutlineInputBorder(),
@@ -150,7 +150,7 @@ class _MyPage extends State {
                     RaisedButton(
                       child: Text('次ページへ移動'),
                       onPressed: () async {
-                        signUp();
+                        SaveData();
                       },
                     )
                   ]
@@ -159,7 +159,7 @@ class _MyPage extends State {
         )
     );
   }
-  Future<void> signUp() async {
+  Future<void> SaveData() async {
     if (_formKey.currentState.validate()) {
       _formKey.currentState.save();
       try {
