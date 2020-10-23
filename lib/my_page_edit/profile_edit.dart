@@ -12,14 +12,14 @@ class MyPage extends StatefulWidget{
 
 class _MyPage extends State {
   String name = '';
-  String githubId = '';
+  String github_id = '';
   String job = '';
   String message = '';
   String goal = '';
   String free = '';
   String description = '';
-  String nameKana = '';
-  String slackUserId = '';
+  String name_kana = '';
+  String slack_user_id = '';
 
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -56,10 +56,10 @@ class _MyPage extends State {
                         }
                         return null;
                       },
-                      onChanged: (nameKana) {
-                        this.nameKana = nameKana;
+                      onChanged: (name_kana) {
+                        this.name_kana = name_kana;
                       },
-                      onSaved: (nameKana) => this.nameKana = nameKana,
+                      onSaved: (nameKana) => this.name_kana = name_kana,
                       decoration: InputDecoration(
                         labelText: 'かな',
                         border: OutlineInputBorder(),
@@ -76,10 +76,10 @@ class _MyPage extends State {
                       ),
                     ),
                     TextFormField(
-                      onChanged: (githubId) {
-                        this.githubId = githubId;
+                      onChanged: (github_id) {
+                        this.github_id = github_id;
                       },
-                      onSaved: (githubId) => this.githubId = githubId,
+                      onSaved: (github_id) => this.github_id = github_id,
                       decoration: InputDecoration(
                         labelText: 'Github_ID',
                         border: OutlineInputBorder(),
@@ -126,10 +126,10 @@ class _MyPage extends State {
                       ),
                     ),
                     TextFormField(
-                      onChanged: (slackUserId) {
-                        this.slackUserId = slackUserId;
+                      onChanged: (slack_user_id) {
+                        this.slack_user_id = slack_user_id;
                       },
-                      onSaved: (slack_user_id) => this.slackUserId = slack_user_id,
+                      onSaved: (slack_user_id) => this.slack_user_id = slack_user_id,
                       decoration: InputDecoration(
                         labelText: 'Slack_user_id',
                         border: OutlineInputBorder(),
@@ -171,13 +171,13 @@ class _MyPage extends State {
             .set({
           'description': description,
           'docId': userCredential,
-          'github_id': githubId,
+          'github_id': github_id,
           'goal': goal,
           'job': job,
           'message': message,
           'name': name,
-          'name_kana': nameKana,
-          'slack_user_id': slackUserId,
+          'name_kana': name_kana,
+          'slack_user_id': slack_user_id,
         });
         // Navigator.pushReplacement(
         //   context,
