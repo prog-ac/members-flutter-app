@@ -26,7 +26,7 @@ class _MyPage extends State {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(title: Text('ページ1')),
+        appBar: AppBar(title: Text('プロフィール編集')),
         body: Form(
           key: _formKey,
           child: Center(
