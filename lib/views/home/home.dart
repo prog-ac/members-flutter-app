@@ -19,29 +19,55 @@ class _HomePageState extends State<HomePage> {
         memberLists = model.memberLists;
         print(memberLists);
         return (model.isLoading)
-            ?  Center(
+            ? Center(
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [const CircularProgressIndicator()],
                 ),
               )
             : Scaffold(
+                appBar: AppBar(
+                  centerTitle: true,
+                  title: Text('神戸プログラミングアカデミー'),
+                  backgroundColor: Colors.red,
+                ),
+                drawer: Drawer(
+                  child: ListView(
+                    children: [
+                      SizedBox(height: 30),
+                      Center(
+                        child: Column(
+                          children: [
+                            const Text('設定'),
+                          ],
+                        ),
+                      ),
+                      Divider(),
+                      ListTile(
+                        title: const Text('ログアウト'),
+                      ),
+                      ListTile(
+                        title: const Text('退会'),
+                      ),
+                    ],
+                  ),
+                ),
                 body: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                 const SizedBox(height: 80),
-                  Expanded(
-                    child: GridView.builder(
-                        itemCount: memberLists.length,
-                        gridDelegate:const SliverGridDelegateWithFixedCrossAxisCount(
-                            crossAxisCount: 2, childAspectRatio: 0.75),
-                        itemBuilder: (BuildContext context, int index) {
-                          return HomeDialogPage(
-                              memberLists: memberLists[index]);
-                        }),
-                  )
-                ],
-              ));
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      child: GridView.builder(
+                          itemCount: memberLists.length,
+                          gridDelegate:
+                              const SliverGridDelegateWithFixedCrossAxisCount(
+                                  crossAxisCount: 2, childAspectRatio: 0.75),
+                          itemBuilder: (BuildContext context, int index) {
+                            return HomeDialogPage(
+                                memberLists: memberLists[index]);
+                          }),
+                    )
+                  ],
+                ));
       }),
     );
   }
