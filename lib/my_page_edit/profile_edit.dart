@@ -148,7 +148,7 @@ class _MyPage extends State {
 
                     // ボタン表示
                     RaisedButton(
-                      child: Text('次ページへ移動'),
+                      child: Text('変更を保存する'),
                       onPressed: () async {
                         signUp();
                       },
