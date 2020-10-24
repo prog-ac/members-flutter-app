@@ -55,9 +55,9 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
     final result = await showCupertinoBottomBar();
     File imageFile;
     if (result == 0) {
-      imageFile = await ImageUpload(ImageSource.camera).getImageFromDevice();
+      imageFile = await CompressFile(ImageSource.camera).getImageFromDevice();
     } else if (result == 1) {
-      imageFile = await ImageUpload(ImageSource.gallery).getImageFromDevice();
+      imageFile = await CompressFile(ImageSource.gallery).getImageFromDevice();
     }
     setState(() {
       file = imageFile;
@@ -94,8 +94,8 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
 }
 
 //カメラ、ギャラリーからのアップロードはここでやる
-class ImageUpload {
-  ImageUpload(this.source, {this.quality = 50});
+class CompressFile {
+  CompressFile(this.source, {this.quality = 50});
 
   final ImageSource source;
   final int quality;

@@ -57,7 +57,7 @@ class _MyPage extends State {
                         return null;
                       },
                       onChanged: (name_kana) {
-                        this.nameKana = name_kana;
+                        this.name_kana = name_kana;
                       },
                       onSaved: (name_kana) => this.name_kana = name_kana,
                       decoration: InputDecoration(
