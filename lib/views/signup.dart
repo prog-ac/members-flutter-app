@@ -1,8 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:member_site/main.dart';
 import 'package:member_site/views/signin.dart';
+
+import 'home/home.dart';
 
 class SignUp extends StatefulWidget {
   SignUp({Key key}) : super(key: key);
@@ -59,7 +60,7 @@ class _SignUpState extends State<SignUp> {
           .then((result) => {
                 Navigator.pushAndRemoveUntil(
                     context,
-                    MaterialPageRoute(builder: (context) => MyHomePage()),
+                    MaterialPageRoute(builder: (context) => HomePage()),
                     (_) => false),
                 emailInputController.clear(),
                 pwdInputController.clear(),
@@ -73,7 +74,7 @@ class _SignUpState extends State<SignUp> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("アカウント作成"),
+        title: const Text("アカウント作成"),
       ),
       body: signupscreen(),
     );
@@ -89,7 +90,7 @@ class _SignUpState extends State<SignUp> {
             children: <Widget>[
               //メールアドレス
               TextFormField(
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     labelText: 'メールアドレス*', hintText: "sample@gmail.com"),
                 controller: emailInputController,
                 keyboardType: TextInputType.emailAddress,
@@ -97,18 +98,18 @@ class _SignUpState extends State<SignUp> {
               ),
               //パスワード
               TextFormField(
-                decoration:
-                    InputDecoration(labelText: 'パスワード*', hintText: "********"),
+                decoration: const InputDecoration(
+                    labelText: 'パスワード*', hintText: "********"),
                 controller: pwdInputController,
                 obscureText: true,
                 validator: pwdValidator,
               ),
-              Padding(padding: EdgeInsets.all(10.0)),
+              const Padding(padding: EdgeInsets.all(10.0)),
               //アカウント作成ボタン
               RaisedButton(
-                child: Text(
+                child: const Text(
                   "アカウント作成",
-                  style: TextStyle(
+                  style: const TextStyle(
                     fontSize: 20.0,
                   ),
                 ),
@@ -117,14 +118,14 @@ class _SignUpState extends State<SignUp> {
                 onPressed: () {
                   registeUser();
                 },
-                shape: RoundedRectangleBorder(
+                shape: const RoundedRectangleBorder(
                   borderRadius: BorderRadius.all(Radius.circular(10.0)),
                 ),
               ),
               FlatButton(
-                child: Text(
+                child: const Text(
                   "ログイン",
-                  style: TextStyle(fontSize: 20.0, color: Colors.blue),
+                  style: const TextStyle(fontSize: 20.0, color: Colors.blue),
                 ),
                 onPressed: () {
                   Navigator.pushAndRemoveUntil(
