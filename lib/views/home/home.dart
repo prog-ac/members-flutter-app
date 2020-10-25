@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:member_site/views/signin.dart';
+import 'package:provider/provider.dart';
+
 import 'package:member_site/models/mainModel.dart';
 import 'package:member_site/views/home/homeDialog.dart';
-import 'package:provider/provider.dart';
 
 class HomePage extends StatefulWidget {
   @override
@@ -10,6 +13,36 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   List<Profile> memberLists;
+
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  void _signOut() async {
+    await _auth.signOut();
+    Navigator.pushAndRemoveUntil(context,
+        MaterialPageRoute(builder: (context) => SignIn()), (_) => false);
+  }
+
+  _showSignOutDialog() {
+    showDialog(
+        context: context,
+        builder: (_) => new AlertDialog(
+              title: new Text("ログアウトしますか？"),
+              actions: <Widget>[
+                FlatButton(
+                  child: Text('キャンセル'),
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                  },
+                ),
+                FlatButton(
+                  child: Text('OK'),
+                  onPressed: () {
+                    _signOut();
+                  },
+                )
+              ],
+            ));
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -44,8 +77,8 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Divider(),
                       ListTile(
-                        title: const Text('ログアウト'),
-                      ),
+                          title: const Text('ログアウト'),
+                          onTap: _showSignOutDialog),
                       ListTile(
                         title: const Text('退会'),
                       ),

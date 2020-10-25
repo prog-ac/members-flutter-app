@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:member_site/main.dart';
 import 'package:member_site/views/signin.dart';
 
 import 'home/home.dart';
@@ -89,18 +88,6 @@ class _SignUpState extends State<SignUp> {
           key: _signupKey,
           child: Column(
             children: <Widget>[
-              //名前
-              TextFormField(
-                decoration:
-                    const InputDecoration(labelText: '名前*', hintText: "Lebron"),
-                controller: nameInputController,
-                validator: (value) {
-                  if (value.length < 3) {
-                    return "名前は3文字以上で入力してください";
-                  }
-                  return null;
-                },
-              ),
               //メールアドレス
               TextFormField(
                 decoration: const InputDecoration(

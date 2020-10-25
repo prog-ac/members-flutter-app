@@ -1,8 +1,9 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:member_site/views/home/home.dart';
-import 'package:member_site/views/signup.dart';
+import 'package:member_site/views/signin.dart';
 
 
 void main()async {
@@ -21,6 +22,19 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: SignUp());
+        home: StreamBuilder(
+        stream: FirebaseAuth.instance.authStateChanges(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          if (snapshot.hasData) {
+            return HomePage();
+          }
+          return SignIn();
+        },
+      )
+    );
   }
 }
