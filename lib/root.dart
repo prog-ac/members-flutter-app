@@ -20,7 +20,7 @@ class _RootWidgetState extends State<RootWidget> {
   static const _footerIcons = [
     Icons.home,
     Icons.calendar_today,
-    Icons.post_add,
+    Icons.local_post_office,
   ];
 
   // アイコン文字列
