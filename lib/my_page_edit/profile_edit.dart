@@ -1,16 +1,19 @@
+import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:member_site/my_page_edit/image_upload.dart';
+import 'package:flutter_native_image/flutter_native_image.dart';
 import 'package:image_picker/image_picker.dart';
 
-class MyPage extends StatefulWidget{
+class ProfileEdit extends StatefulWidget{
   @override
-  _MyPage createState() => _MyPage();
+  _ProfileEdit createState() => _ProfileEdit();
 }
 
-class _MyPage extends State {
+class _ProfileEdit extends State {
   String name = '';
   String github_id = '';
   String job = '';
@@ -187,5 +190,115 @@ class _MyPage extends State {
         print("Error");
       }
     }
+  }
+}
+
+class ImageUploadScreen extends StatefulWidget {
+  @override
+  _ImageUploadScreenState createState() => _ImageUploadScreenState();
+}
+
+class _ImageUploadScreenState extends State<ImageUploadScreen> {
+  File file;
+
+  Future<int> showCupertinoBottomBar() {
+    //選択するためのボトムシートを表示
+    return showCupertinoModalPopup<int>(
+        context: context,
+        builder: (BuildContext context) {
+          return CupertinoActionSheet(
+            message: Text('写真をアップロードしますか？'),
+            actions: <Widget>[
+              CupertinoActionSheetAction(
+                child: Text(
+                  'カメラで撮影',
+                ),
+                onPressed: () {
+                  Navigator.pop(context, 0);
+                },
+              ),
+              CupertinoActionSheetAction(
+                child: Text(
+                  'アルバムから選択',
+                ),
+                onPressed: () {
+                  Navigator.pop(context, 1);
+                },
+              ),
+            ],
+            cancelButton: CupertinoActionSheetAction(
+              child: const Text('キャンセル'),
+              onPressed: () {
+                Navigator.pop(context, 2);
+              },
+              isDefaultAction: true,
+            ),
+          );
+        });
+  }
+
+  void showBottomSheet() async {
+    //ボトムシートから受け取った値によって操作を変える
+    final result = await showCupertinoBottomBar();
+    File imageFile;
+    if (result == 0) {
+      imageFile = await CompressFile(ImageSource.camera).getImageFromDevice();
+    } else if (result == 1) {
+      imageFile = await CompressFile(ImageSource.gallery).getImageFromDevice();
+    }
+    setState(() {
+      file = imageFile;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Image Picker'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            if (file != null)
+              Container(
+                height: 300,
+                width: 300,
+                child: Image.file(file),
+              ),
+            RaisedButton(
+              child: Text('upload'),
+              onPressed: () {
+                showBottomSheet();
+              },
+            )
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+//カメラ、ギャラリーからのアップロードはここでやる
+class CompressFile {
+  CompressFile(this.source, {this.quality = 50});
+
+  final ImageSource source;
+  final int quality;
+
+  Future<File> getImageFromDevice() async {
+    // 撮影/選択したFileが返ってくる
+    final imageFile = await ImagePicker().getImage(source: source);
+    // Androidで撮影せずに閉じた場合はnullになる
+    if (imageFile == null) {
+      return null;
+    }
+    //画像を圧縮
+    final File compressedFile = await FlutterNativeImage.compressImage(
+        imageFile.path,
+        quality: quality);
+
+    return compressedFile;
   }
 }

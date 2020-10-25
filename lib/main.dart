@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:member_site/views/signin.dart';
-import 'package:member_site/my_page_edit/profile_edit.dart';
 import 'package:member_site/views/signup.dart';
 
 void main() {
