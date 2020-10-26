@@ -58,7 +58,7 @@ class _ProfileEdit extends State {
                               }
                               return null;
                             },
-                            initialValue: snapshot.data.get('name').toString(),
+                            // initialValue: snapshot.data.get('name').toString(),
                             onChanged: (name) {
                               this.name = name;
                             },
@@ -75,7 +75,7 @@ class _ProfileEdit extends State {
                               }
                               return null;
                             },
-                            initialValue: snapshot.data.get('name_kana').toString(),
+                            // initialValue: snapshot.data.get('name_kana').toString(),
                             onChanged: (name_kana) {
                               this.name_kana = name_kana;
                             },
@@ -86,7 +86,7 @@ class _ProfileEdit extends State {
                             ),
                           ),
                           TextFormField(
-                            initialValue: snapshot.data.get('description').toString(),
+                            // initialValue: snapshot.data.get('description').toString(),
                             onChanged: (description) {
                               this.description = description;
                             },
@@ -97,7 +97,7 @@ class _ProfileEdit extends State {
                             ),
                           ),
                           TextFormField(
-                            initialValue: snapshot.data.get('github_id').toString(),
+                            // initialValue: snapshot.data.get('github_id').toString(),
                             onChanged: (github_id) {
                               this.github_id = github_id;
                             },
@@ -108,7 +108,7 @@ class _ProfileEdit extends State {
                             ),
                           ),
                           TextFormField(
-                            initialValue: snapshot.data.get('job').toString(),
+                            // initialValue: snapshot.data.get('job').toString(),
                             onChanged: (job) {
                               this.job = job;
                             },
@@ -119,7 +119,7 @@ class _ProfileEdit extends State {
                             ),
                           ),
                           TextFormField(
-                            initialValue: snapshot.data.get('message').toString(),
+                            // initialValue: snapshot.data.get('message').toString(),
                             onChanged: (message) {
                               this.message = message;
                             },
@@ -130,7 +130,7 @@ class _ProfileEdit extends State {
                             ),
                           ),
                           TextFormField(
-                            initialValue: snapshot.data.get('goal').toString(),
+                            // initialValue: snapshot.data.get('goal').toString(),
                             onChanged: (goal) {
                               this.goal = goal;
                             },
@@ -141,7 +141,7 @@ class _ProfileEdit extends State {
                             ),
                           ),
                           TextFormField(
-                            initialValue: snapshot.data.get('slack_user_id').toString(),
+                            // initialValue: snapshot.data.get('slack_user_id').toString(),
                             onChanged: (slack_user_id) {
                               this.slack_user_id = slack_user_id;
                             },
