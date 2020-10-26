@@ -194,6 +194,7 @@ class _ProfileEdit extends State {
           'name': name,
           'name_kana': name_kana,
           'slack_user_id': slack_user_id,
+          'imagePath': '',
         });
       } catch (e){
         print("Error");
