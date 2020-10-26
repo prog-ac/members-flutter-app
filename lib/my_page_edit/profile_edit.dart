@@ -162,10 +162,9 @@ class _ProfileEdit extends State {
                               );
                             },
                           ),
-
                           // ボタン表示
                           RaisedButton(
-                            child: Text('次ページへ移動'),
+                            child: Text('変更を保存'),
                             onPressed: () async {
                               SaveData();
                               Navigator.pop(context);
