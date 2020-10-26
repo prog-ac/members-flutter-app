@@ -81,6 +81,15 @@ class _HomePageState extends State<HomePage> {
                           onTap: _showSignOutDialog
                       ),
                       ListTile(
+                          title: const Text('プロフィール編集', ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ProfileEdit()),
+                            );
+                          }
+                      ),
+                      ListTile(
                         title: const Text('退会'),
                       ),
                     ],
