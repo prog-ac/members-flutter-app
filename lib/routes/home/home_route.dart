@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:member_site/views/signin.dart';
 import 'package:provider/provider.dart';
-
 import 'package:member_site/models/mainModel.dart';
-import 'package:member_site/views/home/homeDialog.dart';
+import 'package:member_site/routes/home/homeDialog.dart';
 
 class HomePage extends StatefulWidget {
   @override

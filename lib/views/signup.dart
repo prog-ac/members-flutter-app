@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:member_site/views/signin.dart';
 
-import 'home/home.dart';
+import 'package:member_site/routes/home/home_route.dart';
 
 class SignUp extends StatefulWidget {
   SignUp({Key key}) : super(key: key);

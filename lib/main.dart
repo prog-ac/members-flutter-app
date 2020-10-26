@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:member_site/views/signup.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
-import 'package:member_site/views/home/home.dart';
 import 'package:member_site/views/signin.dart';
+import 'package:member_site/root.dart';
 
 
 void main()async {
@@ -25,7 +23,7 @@ class MyApp extends StatelessWidget {
           }
 
           if (snapshot.hasData) {
-            return HomePage();
+            return RootWidget();
           }
           return SignIn();
         },
