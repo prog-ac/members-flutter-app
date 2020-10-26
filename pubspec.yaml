@@ -23,6 +23,8 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+
+  font_awesome_flutter: ^8.10.0
   image_picker: ^0.6.7+12
   flutter_native_image: ^0.0.5+2
   firebase_auth: ^0.18.1+2
@@ -40,7 +42,7 @@ dependencies:
 flutter_icons:
   android: true
   ios: true
-  image_path: 'lib/assets/prog-ac-logo-complete.png'
+  image_path: "lib/assets/prog-ac-logo-complete.png"
 
 dev_dependencies:
   flutter_test:

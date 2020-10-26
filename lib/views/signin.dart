@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:member_site/views/signup.dart';
 import 'package:member_site/routes/home/home_route.dart';
 
@@ -15,11 +16,15 @@ class _SignInState extends State<SignIn> {
   TextEditingController emailInputController;
   TextEditingController pwdInputController;
 
+  bool _showPassword; 
+
   @override
   initState() {
     super.initState();
     emailInputController = TextEditingController();
     pwdInputController = TextEditingController();
+
+    _showPassword = false;
     Firebase.initializeApp().whenComplete(() {
       print("completed");
       setState(() {});
@@ -88,16 +93,32 @@ class _SignInState extends State<SignIn> {
             children: <Widget>[
               //メールアドレス
               TextFormField(
-                decoration: InputDecoration(labelText: 'メールアドレス'),
+                decoration: InputDecoration(
+                      icon: Icon(Icons.account_circle),
+                      labelText: 'メールアドレス*',
+                      hintText: "sample@gmail.com"),
                 controller: emailInputController,
                 keyboardType: TextInputType.emailAddress,
                 validator: emailValidator,
               ),
               //パスワード
               TextFormField(
-                decoration: InputDecoration(labelText: 'パスワード'),
+                decoration: InputDecoration(
+                  icon: Icon(Icons.lock),
+                  labelText: 'パスワード*',
+                    suffixIcon: IconButton(
+                    icon: Icon(_showPassword
+                        ? FontAwesomeIcons.solidEye
+                        : FontAwesomeIcons.solidEyeSlash),
+                    onPressed: () {
+                    this.setState((){
+                        _showPassword = !_showPassword;
+                      });
+                    }
+                    ),
+                  ),
                 controller: pwdInputController,
-                obscureText: true,
+                obscureText: !_showPassword,
                 validator: pwdValidator,
               ),
               Padding(padding: EdgeInsets.all(10.0)),
