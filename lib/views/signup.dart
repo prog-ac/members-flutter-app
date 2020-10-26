@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -55,16 +56,31 @@ class _SignUpState extends State<SignUp> {
     if (_signupKey.currentState.validate()) {
       FirebaseAuth.instance
           .createUserWithEmailAndPassword(
-              email: emailInputController.text,
-              password: pwdInputController.text)
+          email: emailInputController.text,
+          password: pwdInputController.text)
           .then((result) => {
-                Navigator.pushAndRemoveUntil(
-                    context,
-                    MaterialPageRoute(builder: (context) => HomePage()),
-                    (_) => false),
-                emailInputController.clear(),
-                pwdInputController.clear(),
-              })
+            FirebaseFirestore.instance
+                .collection('memberProfile')
+                .doc(FirebaseAuth.instance.currentUser.uid)
+                .set({
+              'description': '',
+              'docId': FirebaseAuth.instance.currentUser.uid,
+              'github_id': '',
+              'goal': '',
+              'imagePath': '',
+              'job': '',
+              'message': '',
+              'name': '',
+              'name_kana': '',
+              'slack_user_id': '',
+            }),
+        Navigator.pushAndRemoveUntil(
+            context,
+            MaterialPageRoute(builder: (context) => HomePage()),
+                (_) => false),
+        emailInputController.clear(),
+        pwdInputController.clear(),
+      })
           .catchError((err) => print(err))
           .catchError((err) => print(err));
     }
