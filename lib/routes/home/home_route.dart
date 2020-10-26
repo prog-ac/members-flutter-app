@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:member_site/my_page_edit/profile_edit.dart';
 import 'package:member_site/views/signin.dart';
 import 'package:provider/provider.dart';
 import 'package:member_site/models/mainModel.dart';
@@ -77,7 +78,17 @@ class _HomePageState extends State<HomePage> {
                       Divider(),
                       ListTile(
                           title: const Text('ログアウト'),
-                          onTap: _showSignOutDialog),
+                          onTap: _showSignOutDialog
+                      ),
+                      ListTile(
+                          title: const Text('プロフィール編集', ),
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => ProfileEdit()),
+                            );
+                          }
+                      ),
                       ListTile(
                         title: const Text('退会'),
                       ),
