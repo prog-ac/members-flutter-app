@@ -19,7 +19,7 @@ class _BlogState extends State<Blog> {
     return Scaffold(
       appBar: AppBar(
           title:
-             const Text('ブログ', style: TextStyle(fontWeight: FontWeight.w700)),
+             const Text('ブログ'),
           centerTitle: true),
       body: Stack(
         children: <Widget>[

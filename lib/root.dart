@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import 'routes/home_route.dart';
+import 'package:member_site/routes/home/home_route.dart';
 import 'routes/calendar_route.dart';
 import 'routes/blog_route.dart';
 
@@ -19,20 +18,20 @@ class _RootWidgetState extends State<RootWidget> {
   // アイコン情報
   static const _footerIcons = [
     Icons.home,
-    Icons.calendar_today,
-    Icons.post_add,
+    // Icons.calendar_today,
+    Icons.local_post_office,
   ];
 
   // アイコン文字列
   static const _footerItemNames = [
     'ホーム',
-    'カレンダー',
+    // 'カレンダー',
     'ブログ',
   ];
 
   var _routes = [
-    Home(),
-    Calendar(),
+    HomePage(),
+    // Calendar(),
     Blog(),
   ];
 
